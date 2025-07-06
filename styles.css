@@ -36,39 +36,54 @@ header {
   display: block;
 }
 
-.menu {
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* oscurece el fondo */
+  z-index: 50;
   display: none;
-  flex-direction: column;
+}
+
+#overlay.active {
+  display: block;
+}
+
+.menu {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
   position: absolute;
   top: 60px;
   right: 20px;
-  background-color: #686868;
+  background-color: #444;
   border-radius: 8px;
-  overflow: hidden;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  z-index: 100;
 }
 
 .menu a {
-  color: #BDBCBC;
+  color: white;
   text-decoration: none;
-  padding: 15px 20px;
-}
-
-.menu border-bottom {
-	opacity: 50%;
-}
-
-.menu a:last-child {
-  border-bottom: none;
+  padding: 5px 10px;
 }
 
 .menu a:hover {
-  background-color: #686868;
+  background-color: #555;
+  border-radius: 4px;
 }
 
-.menu.active {
-  display: flex;
+.menu.show {
+  opacity: 1;
+  pointer-events: auto;
 }
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
