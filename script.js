@@ -1,15 +1,25 @@
-const menuToggle = document.getElementById('menu-toggle');
-const menu = document.getElementById('menu');
+const menuToggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
+const overlay = document.getElementById("overlay");
 
-// Alternar visibilidad al hacer clic en el ícono
-menuToggle.addEventListener('click', (event) => {
-  event.stopPropagation(); // evita que se dispare el evento del documento
-  menu.classList.toggle('active');
+menuToggle.addEventListener("click", (e) => {
+  e.stopPropagation();
+  menu.classList.toggle("show");
+  overlay.classList.toggle("active");
 });
 
-// Cerrar menú al hacer clic fuera del mismo
-document.addEventListener('click', (event) => {
-  if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
-    menu.classList.remove('active');
+document.addEventListener("click", (e) => {
+  if (
+    !menu.contains(e.target) &&
+    !menuToggle.contains(e.target) &&
+    overlay.classList.contains("active")
+  ) {
+    menu.classList.remove("show");
+    overlay.classList.remove("active");
   }
+});
+
+overlay.addEventListener("click", () => {
+  menu.classList.remove("show");
+  overlay.classList.remove("active");
 });
